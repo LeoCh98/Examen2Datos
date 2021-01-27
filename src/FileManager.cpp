@@ -16,14 +16,14 @@ void FileManager::setFilePath(const string &filePath) {
     FileManager::filePath = filePath;
 }
 
-vector<Connection> FileManager::loadConnections(const string &filename) {
+vector<Edge> FileManager::loadConnections(const string &filename) {
     ifstream csv;
-    vector<Connection> connections;
+    vector<Edge> connections;
     try {
         csv.open( filePath + filename, ios::in);
         if(csv.good()) { //+
             while (!csv.eof() && csv.good()) {
-                Connection _connection = loadConnection(csv);
+                Edge _connection = loadConnection(csv);
                 connections.push_back(_connection);
             }
         }
@@ -35,8 +35,8 @@ vector<Connection> FileManager::loadConnections(const string &filename) {
     return connections;
 }
 
-Connection FileManager::loadConnection(ifstream &csvInfo) {
-    Connection newCon;
+Edge FileManager::loadConnection(ifstream &csvInfo) {
+    Edge newCon;
     string name1, name2;
     string con,gyp,floor,add;
 

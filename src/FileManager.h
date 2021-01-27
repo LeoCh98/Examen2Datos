@@ -4,7 +4,7 @@
 
 #ifndef EXAMEN2DATOS_FILEMANAGER_H
 #define EXAMEN2DATOS_FILEMANAGER_H
-#include "Connection.h"
+#include "Edge.h"
 #include <fstream>
 #include <vector>
 
@@ -15,8 +15,8 @@ public:
     FileManager();
     const string &getFilePath() const;
     void setFilePath(const string &filePath);
-    vector<Connection> loadConnections(const string &filename);
-    Connection loadConnection(ifstream &csvInfo);
+    vector<Edge> loadConnections(const string &filename);
+    Edge loadConnection(ifstream &csvInfo);
 };
 
 

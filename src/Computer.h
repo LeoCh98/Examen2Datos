@@ -5,15 +5,16 @@
 #ifndef EXAMEN2DATOS_COMPUTER_H
 #define EXAMEN2DATOS_COMPUTER_H
 #include <iostream>
-
+using namespace std;
 class Computer {
 private:
-    std::string name;
+    string name;
 public:
-    Computer(const std::string &name);
+    Computer(const string &name);
     Computer();
-    const std::string &getName() const;
-    void setName(const std::string &name);
+    const string &getName() const;
+    void setName(const string &name);
+    const int getNameInt();//Convert name string to int for arrays...
 };
 
 

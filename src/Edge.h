@@ -2,26 +2,27 @@
 // Created by leoch on 26/01/2021.
 //
 
-#ifndef EXAMEN2DATOS_CONNECTION_H
-#define EXAMEN2DATOS_CONNECTION_H
+#ifndef EXAMEN2DATOS_EDGE_H
+#define EXAMEN2DATOS_EDGE_H
 #include "Computer.h"
 #include <sstream>
-using namespace std;
 
-class Connection {
+class Edge {
 private:
-    Computer comOne;
-    Computer comTwo;
+    Computer comOne; //Vertex 1
+    Computer comTwo; //Vertex 2
+
+    //Variables to calculate weight
     int concrete;
     int gypsum;
     int floor;
     int additional;
 public:
-    Connection(const Computer &comOne, const Computer &comTwo, int concrete, int gypsum, int floor, int additional);
-    Connection();
-    const Computer &getComOne() const;
+    Edge(const Computer &comOne, const Computer &comTwo, int concrete, int gypsum, int floor, int additional);
+    Edge();
+    Computer &getComOne() ;
     void setComOne(const Computer &comOne);
-    const Computer &getComTwo() const;
+    Computer &getComTwo() ;
     void setComTwo(const Computer &comTwo);
     int getConcrete() const;
     void setConcrete(int concrete);
@@ -36,4 +37,4 @@ public:
 };
 
 
-#endif //EXAMEN2DATOS_CONNECTION_H
+#endif //EXAMEN2DATOS_EDGE_H

@@ -40,35 +40,44 @@ void Graph::shortesPath(int src) {
             cout <<nameChar(src) <<"->"<< nameChar(i) << "\t\t" << dist[i] << endl;
 }
 
+void Graph::kruskalMST() {
+
+}
+
 void Graph::primMST() {
-    vector<bool> visited(adjList.size(),false);
+    int src = 0;
+    int V = adjList.size();
 
-    vector<int> connection(adjList.size(),1);
+    priority_queue<Pair, vector<Pair>, greater<Pair> > pq;
+    vector<int> key(V, INF);
+    vector<int> parent(V, -1);
+    vector<bool> inMST(V, false);
 
-    vector<int> value(adjList.size(), INF);
+    pq.push(make_pair(0, src));
+    key[src] = 0;
 
-    priority_queue<Pair, vector<Pair>, greater<Pair>> que;
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
 
-    que.push(make_pair(0, 1));  //push the weight required to insert the source node =0 and the node itself(i.e 1)
-    value[1]=0;                 //minimum weight for source is 0
-    while (!que.empty()) {
-        int node = que.top().second;  //get the node
-        visited[node] = true;         //as it is visited now change its value to true
-        que.pop();
-        for (auto neighbor : adjList[node]) {   //we check for all its neighbors
-            int weight = neighbor.second;       //get their weight
-            int vertex = neighbor.first;         //get their index
+        inMST[u] = true;
 
-            if (!visited[vertex] && value[vertex] > weight) {   //if the node is not visited and if its weight along this edge is less than the
-                value[vertex] = weight;                         //previous edge associated with it, then only we consider it
-                connection[vertex] = node;
-                que.push(make_pair(value[vertex], vertex));     //we update the values and then push it in the queue to examine its neighbors
+        vector<pair<int, int> >::iterator i;
+        for (i = adjList[u].begin(); i != adjList[u].end(); ++i) {
+
+            int v = (*i).first;
+            int weight = (*i).second;
+
+            if (inMST[v] == false && key[v] > weight) {
+                // Updating key of v
+                key[v] = weight;
+                pq.push(make_pair(key[v], v));
+                parent[v] = u;
             }
         }
     }
-    for (int i = 0; i < adjList.size(); i++)
-        if (!adjList[i].empty())
-            cout << nameChar(i-1) << "->" << nameChar(i) << "\t\t" << connection[i] << endl;
+    for (int i = 1; i < V - 6; ++i)
+        cout << nameChar(parent[i]) << " -> " << nameChar(i) << endl;
 }
 
 void Graph::print() {
@@ -110,6 +119,9 @@ char Graph::nameChar(int i) {
             break;
         case 8:
             return 'I';
+            break;
+        default:
+            return -2;
             break;
     }
 }

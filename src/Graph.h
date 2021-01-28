@@ -7,7 +7,7 @@
 #include <vector>
 #include "Edge.h"
 #include <queue>
-#define INF 0X3f3f3f3f
+#define INF 0X3f3f3f3f //Int max
 
 typedef pair<int,int> Pair;
 class Graph {
@@ -16,6 +16,7 @@ private:
 public:
     Graph(vector<Edge> &edges);
     void shortesPath(int src);
+    void kruskalMST();
     void primMST();
     void print();
     char nameChar(int i); //just to see letters instead of numbers

@@ -22,9 +22,13 @@ int main(){
     g1.shortesPath(1);
     cout<<endl;
 
-    cout<<"PrimMST: (still in process)\n";
+    cout<<"PrimMST:\n";
     g1.primMST();
+    cout<<endl;
 
+    /*cout<<"Kruskal: (still in process)\n";
+    g1.kruskalMST();
+    cout<<endl;*/
 
     return -1;
 }

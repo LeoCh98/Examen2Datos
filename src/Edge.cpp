@@ -4,12 +4,6 @@
 
 #include "Edge.h"
 
-Edge::Edge(const Computer &comOne, const Computer &comTwo, int concrete, int gypsum, int floor,
-           int additional) : comOne(comOne), comTwo(comTwo), concrete(concrete), gypsum(gypsum),
-                                         floor(floor), additional(additional) {
-
-}
-
 Edge::Edge() = default;
 
 Computer &Edge::getComOne() {
@@ -68,4 +62,8 @@ string Edge::toString() {
     stringstream output;
     output << comOne.getName() <<","<< comTwo.getName() <<","<< makeConnection() << endl;
     return output.str();
+}
+
+Edge::~Edge() {
+
 }

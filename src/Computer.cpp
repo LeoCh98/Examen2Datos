@@ -8,9 +8,9 @@ Computer::Computer(const string &name) : name(name) {
 
 }
 
-Computer::Computer() {
+Computer::Computer() = default;
 
-}
+Computer::~Computer() = default;
 
 const string &Computer::getName() const {
     return name;

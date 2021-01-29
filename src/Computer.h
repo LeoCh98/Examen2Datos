@@ -12,6 +12,7 @@ private:
 public:
     Computer(const string &name);
     Computer();
+    virtual ~Computer();
     const string &getName() const;
     void setName(const string &name);
     const int getNameInt();//Convert name string to int for arrays...

@@ -17,6 +17,14 @@ Graph::Graph( vector<Edge> &edges) {
     }
 }
 
+Graph::~Graph() {
+    /*
+     **Just in case when using ptr**
+     for (int i = 0; i < adjList.size(); i++)
+        delete[] adjList[i];
+    delete[] adjList;*/
+}
+
 void Graph::shortesPath(int src) {
     priority_queue<Pair, vector<Pair>, greater<Pair>> pq;
     vector<int> dist(adjList.size(), INF);
@@ -34,14 +42,41 @@ void Graph::shortesPath(int src) {
             }
         }
     }
-    cout << "VERTEX DISTANCE FROM SOURCE\n";
+    cout << "VERTEX DISTANCE FROM SOURCE '"<<nameChar(src)<<"' \n";
     for (int i = 0; i < adjList.size(); i++)
         if(!adjList[i].empty())
             cout <<nameChar(src) <<"->"<< nameChar(i) << "\t\t" << dist[i] << endl;
 }
 
-void Graph::kruskalMST() {
+int Graph::find_set(int i,vector<int> parent) {
+    if (i == parent[i])
+        return i;
+    else
+        return find_set(parent[i],parent);
+}
 
+void Graph::kruskalMST() {
+    vector<vector<Pair>> T(adjList.size());
+    vector<int> parent;
+    parent.resize(adjList.size());
+    int i, uRep=0, vRep=0;
+    sort(adjList.begin(), adjList.end());  // increasing weight
+    for (i = 0; i < adjList.size()-6; i++) {
+        uRep = find_set(adjList[i].data()->first, parent);
+        vRep = find_set(adjList[i].data()->second, parent);
+        if (uRep != vRep) {
+            T[i].push_back( make_pair(uRep, vRep) );  // add to tree
+            parent[uRep] = parent[vRep];
+        }
+    }
+    for (int i = 0; i < T.size(); i++){
+        if(!T[i].empty()) {
+            for (Pair v :T[i]) {
+                cout << "(" << nameChar(i) << ", " << nameChar(v.first) << ", " << v.second << ") ";
+            }
+            cout << endl;
+        }
+    }
 }
 
 void Graph::primMST() {
@@ -121,7 +156,7 @@ char Graph::nameChar(int i) {
             return 'I';
             break;
         default:
-            return -2;
+            return 'X';
             break;
     }
 }

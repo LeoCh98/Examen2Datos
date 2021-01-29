@@ -15,14 +15,13 @@ private:
     vector<vector<Pair>> adjList;
 public:
     Graph(vector<Edge> &edges);
+    virtual ~Graph();
     void shortesPath(int src);
+    int find_set(int i,vector<int> parent);
     void kruskalMST();
     void primMST();
     void print();
     char nameChar(int i); //just to see letters instead of numbers
 };
-
-
-
 
 #endif //EXAMEN2DATOS_GRAPH_H

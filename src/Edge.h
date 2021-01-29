@@ -18,8 +18,8 @@ private:
     int floor;
     int additional;
 public:
-    Edge(const Computer &comOne, const Computer &comTwo, int concrete, int gypsum, int floor, int additional);
     Edge();
+    virtual ~Edge();
     Computer &getComOne() ;
     void setComOne(const Computer &comOne);
     Computer &getComTwo() ;

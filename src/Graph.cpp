@@ -60,7 +60,7 @@ void Graph::kruskalMST() {
     vector<int> parent;
     parent.resize(adjList.size());
     int i, uRep=0, vRep=0;
-    sort(adjList.begin(), adjList.end());  // increasing weight
+    sort(adjList.begin(), adjList.end());
     for (i = 0; i < adjList.size()-6; i++) {
         uRep = find_set(adjList[i].data()->first, parent);
         vRep = find_set(adjList[i].data()->second, parent);

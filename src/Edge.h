@@ -32,7 +32,7 @@ public:
     void setFloor(int floor);
     int getAdditional() const;
     void setAdditional(int additional);
-    int makeConnection();
+    int makeConnection(); //Weight
     string toString();
 };
 
